@@ -28,18 +28,24 @@ chmod +x run.sh && ./run.sh
 
 ### Windows:
 ```cmd
-REM SSH (empfohlen)
-git clone git@github.com:thetabish/ai-personas.git
-REM oder HTTPS
+REM Command Prompt (cmd) - Empfohlen
 git clone https://github.com/thetabish/ai-personas.git
-
 cd ai-personas
 run.bat
-REM Script fragt automatisch nach API-Schlüssel falls keiner vorhanden
+```
+
+```powershell
+# PowerShell - Alternative
+git clone https://github.com/thetabish/ai-personas.git
+cd ai-personas
+.\run.bat
+# oder: cmd /c run.bat
 ```
 
 **Das war's!** Die Scripts richten automatisch alles ein:
 ✅ Python prüfen ✅ Abhängigkeiten installieren ✅ **API interaktiv eingeben** ✅ Demo starten
+
+**💡 Windows-Tipp:** Bei PowerShell verwenden Sie `.\run.bat` - Command Prompt (cmd) ist empfohlen!
 
 **Demo-Ergebnis:** 3 AI-Personas (Anna, Tom, Julia) beantworten Lifestyle-Fragen
 - Ausgabe: `results.json` (Daten) und `results.md` (Bericht)
@@ -124,6 +130,8 @@ DEFAULT_MODEL=mistralai/mistral-small-24b-instruct-2501:free
 - **API-Schlüssel fehlt**: `.env` Datei prüfen
 - **Abhängigkeiten fehlen**: `pip install -r requirements.txt`
 - **Python fehlt**: Python 3.8+ von https://python.org installieren
+- **Windows PowerShell**: Verwenden Sie `.\run.bat` statt `run.bat`
+- **Command Prompt empfohlen**: Öffnen Sie `cmd` statt PowerShell für beste Kompatibilität
 - **Test**: `python agents.py`
 
 ## 📚 Tech Stack
