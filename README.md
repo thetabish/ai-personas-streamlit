@@ -42,6 +42,13 @@ cd ai-personas
 # oder: cmd /c run.bat
 ```
 
+> **Was machen die Scripts?** `run.sh` und `run.bat` sind vollautomatische Setup-Scripts, die:
+> - Python-Installation prüfen
+> - Virtuelle Umgebung erstellen  
+> - Alle Abhängigkeiten installieren
+> - API-Schlüssel interaktiv abfragen (falls fehlend)
+> - Sofort eine Demo mit 3 AI-Personas starten
+
 **Das war's!** Die Scripts richten automatisch alles ein:
 ✅ Python prüfen ✅ Abhängigkeiten installieren ✅ **API interaktiv eingeben** ✅ Demo starten
 
