@@ -116,7 +116,7 @@ def create_neue_persona():
 ### AI-Modell wechseln
 In `.env` ändern:
 ```
-DEFAULT_MODEL=meta-llama/llama-3.2-3b-instruct:free
+DEFAULT_MODEL=mistralai/mistral-small-24b-instruct-2501:free
 ```
 
 ## 🔍 Fehlerbehebung
