@@ -4,7 +4,7 @@ Automatisierte synthetische Interviews mit AI-Personas für Lifestyle-Marken-For
 
 **📦 Repository:** [github.com/thetabish/ai-personas](https://github.com/thetabish/ai-personas)
 
-## � Vor dem Start: API-Schlüssel besorgen
+## Vor dem Start: API-Schlüssel besorgen
 
 **5-Sekunden Setup:**
 1. Gehen Sie zu: https://openrouter.ai/mistralai/mistral-small-24b-instruct-2501:free/api
@@ -12,7 +12,7 @@ Automatisierte synthetische Interviews mit AI-Personas für Lifestyle-Marken-For
 3. Kopieren Sie Ihren API-Schlüssel (beginnt mit `sk-or-v1-...`)
 4. **Schlüssel wird automatisch abgefragt!** ⬇️
 
-## �🚀 Schnell-Start (5 Minuten)
+## 🚀 Schnell-Start (5 Minuten)
 
 ### Linux/macOS:
 ```bash
