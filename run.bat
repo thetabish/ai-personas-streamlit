@@ -180,26 +180,44 @@ echo Starte synthetisches Interview mit Beispiel-Fragen...
 echo.
 
 REM Demo ausfuehren
-python interview.py --questions questions.json
+echo Starte synthetisches Interview mit allen Agenten...
+python interview.py questions.json
 
 echo.
 echo ======================================================================
 echo DEMO ABGESCHLOSSEN!
 echo ======================================================================
 echo.
-echo Die Ergebnisse wurden gespeichert als:
-echo    - results.json (JSON-Format)
-echo    - results.md (Markdown-Format)
+echo Die Ergebnisse wurden gespeichert mit Zeitstempel:
+echo    - interview_results_[timestamp].md (Markdown-Format)
+echo    - interview_results_[timestamp].json (JSON-Format)
 echo.
-echo Um weitere Interviews zu fuehren:
-echo    python interview.py --questions questions.json
+echo Weitere Interview-Optionen:
+echo    Alle Agenten:
+echo    python interview.py questions.json
+echo.
+echo    Einzelner Agent:
+echo    python interview.py anna questions.json
+echo    python interview.py tom questions.json
+echo    python interview.py julia questions.json
+echo.
+echo    JSON-Format:
+echo    python interview.py questions.json --format json
+echo.
+echo Automatisierung (Batch-Modus):
+echo    Einmaliger Batch-Lauf:
+echo    python run_batch.py
+echo.
+echo    Fuer Cron-Jobs verwenden Sie Task-Scheduler mit:
+echo    python run_batch.py
 echo.
 echo Um eigene Fragen zu verwenden:
-echo    1. Bearbeiten Sie questions.json
+echo    1. Bearbeiten Sie questions.json oder interview_batch.json
 echo    2. Fuehren Sie das Interview erneut aus
 echo.
 echo Weitere Optionen:
 echo    python interview.py --help
+echo    python run_batch.py --help
 echo.
 echo Vielen Dank fuers Ausprobieren!
 echo.
