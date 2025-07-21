@@ -61,7 +61,8 @@ cd ai-personas
 
 - 🤖 **3 einzigartige AI-Personas** (Anna, Tom, Julia)
 - 🎯 **Flexibler Interview-Modus** (alle Personas oder einzeln)
-- 🔗 **LangChain + OpenRouter** (kostenlos)
+- � **Batch-Processing** (automatisierte Studien + Cron-Unterstützung)
+- �🔗 **LangChain + OpenRouter** (kostenlos)
 - 📝 **JSON-Fragensystem** (einfach anpassbar)
 - 💻 **CLI & Python API** (Kommandozeile + programmierbar)
 - 📊 **JSON/Markdown Ausgabe** (strukturierte Daten + Berichte)
@@ -95,7 +96,8 @@ python interview.py --questions questions.json
 
 ### CLI (Kommandozeile)
 ```bash
-# Basis-Interview (alle Personas, Markdown-Ausgabe)
+# Basis-Interview
+ (alle Personas, Markdown-Ausgabe)
 python interview.py --questions questions.json
 
 # JSON-Format gewünscht
@@ -141,6 +143,105 @@ results = run_interview("anna", "questions.json", format="json")
 from interview import get_available_agents
 agents = get_available_agents()  # ['anna', 'tom', 'julia']
 ```
+
+### Batch-Interviews (Automatisierung) 🔄
+
+**Für große Studien, Forschungsautomatisierung und Cron-Jobs:**
+
+#### Schnellstart
+```bash
+# Batch-Interview mit allen Agenten
+python run_batch.py --config interview_batch.json
+
+# Nur spezifische Agenten
+python run_batch.py --config interview_batch.json --agents anna tom
+
+# Stiller Modus für Cron-Jobs
+python run_batch.py --config interview_batch.json --quiet
+```
+
+#### Kommandozeilen-Optionen
+
+| Option | Beschreibung | Standard |
+|--------|-------------|----------|
+| `--config` | Pfad zur Batch-Konfiguration | `interview_batch.json` |
+| `--output-dir` | Ergebnisordner | `batch_results` |
+| `--log-file` | Log-Datei | `batch_interviews.log` |
+| `--format` | Ausgabeformat (md/json) | `md` |
+| `--agents` | Spezifische Agenten | `all` |
+| `--quiet` | Stiller Modus für Automation | `false` |
+
+#### Batch-Konfiguration (`interview_batch.json`)
+```json
+{
+  "questions": [
+    "Was ist dir bei einer Lifestyle-Marke am wichtigsten?",
+    "Wie bewertest du Nachhaltigkeit bei den Marken, die du wählst?",
+    "Welche Rolle spielt der Preis bei deinen Kaufentscheidungen?",
+    "Bis zu 20+ weitere Fragen..."
+  ],
+  "metadata": {
+    "description": "Lifestyle Marken Studie 2025",
+    "version": "1.0",
+    "research_focus": ["nachhaltigkeit", "markenwahrnehmung"]
+  }
+}
+```
+
+#### Cron-Job Setup (Automatisierung)
+```bash
+# Tägliche Interviews um 2:00 Uhr
+0 2 * * * cd /path/to/ai-personas && python run_batch.py --config interview_batch.json --quiet
+
+# Wöchentliche umfassende Studie (Sonntags 3:00 Uhr)
+0 3 * * 0 cd /path/to/ai-personas && python run_batch.py --config weekly_study.json --format json --quiet
+
+# Werktägliche Verbraucher-Sentiment-Studie
+0 6 * * 1-5 cd /path/to/ai-personas && python run_batch.py --config daily_sentiment.json --quiet
+```
+
+#### Ausgabe-Struktur
+```
+batch_results/
+├── batch_all_agents_20250121_140530.md    # Alle Agenten
+├── batch_anna_20250121_140535.md          # Nur Anna
+├── batch_tom_20250121_140540.md           # Nur Tom
+└── batch_julia_20250121_140545.md         # Nur Julia
+
+batch_interviews.log                        # Umfassendes Log
+```
+
+#### Log-Inhalt
+Das Log umfasst:
+- ✅ **Erfolg/Fehler-Status** für jedes Interview
+- � **Batch-Statistiken** (Erfolgsrate, Timing)
+- 🚨 **Fehlerdetails** für Fehlerbehebung  
+- 🕐 **Zeitstempel** für alle Vorgänge
+
+#### Beispiele für Forschungsautomatisierung
+```bash
+# Morgendliche Verbraucherstimmung
+python run_batch.py --config morning_sentiment.json --agents all --format md
+
+# Individuelle Persona-Tiefenanalyse
+python run_batch.py --config deep_dive.json --agents anna --format json
+
+# A/B-Testing verschiedener Fragensets
+python run_batch.py --config variant_a.json --output study_a
+python run_batch.py --config variant_b.json --output study_b
+```
+
+#### Fehlerbehandlung & Robustheit
+- **Einzelfehler** stoppen nicht das gesamte Batch
+- **Umfassendes Logging** für Debugging
+- **Exit-Codes** für Cron-Job-Monitoring
+- **Automatische Bereinigung** temporärer Dateien
+
+**Perfekt für:**
+- 📈 **Langzeitstudien** (tägliche/wöchentliche Verfolgung)
+- � **A/B-Testing** verschiedener Fragensets
+- 📊 **Großangelegte Forschung** mit mehreren Personas
+- 🤖 **Automatisierte Datensammlung** für Pipelines
 
 ### Eigene Fragen erstellen
 ```json

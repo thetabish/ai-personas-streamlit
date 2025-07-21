@@ -310,7 +310,7 @@ def create_julia_persona():
 
 
 # =====================================
-# TESTING FUNCTIONS (Test-Funktionen)
+# API KEY VALIDATION
 # =====================================
 
 
@@ -344,85 +344,3 @@ def validate_api_key():
     
     print("✅ Gültiger OpenRouter API-Schlüssel gefunden!")
     return True
-
-
-def test_single_persona(persona, test_question):
-    """
-    Testet eine einzelne Persona mit einer Frage
-    
-    Args:
-        persona: Die zu testende Persona
-        test_question: Die Testfrage
-        
-    Returns:
-        True wenn erfolgreich, False bei Fehler
-    """
-    try:
-        # Verwende HumanMessage für strukturierte Eingabe
-        response = persona.respond(test_question)
-        print(f"{persona.name}: {response}\n")
-        return True
-    except Exception as error:
-        print(f"❌ Fehler bei {persona.name}: {error}\n")
-        return False
-
-
-def test_personas():
-    """
-    Einfache Testfunktion um zu überprüfen, ob alle Personas funktionieren
-    Das ist nützlich um sicherzustellen, dass alles korrekt eingerichtet ist
-    """
-    print("🧪 Teste LangChain Personas mit OpenRouter...")
-    
-    # Zuerst prüfen ob API-Schlüssel vorhanden und gültig
-    if not validate_api_key():
-        return False
-    
-    try:
-        # Erstelle alle Personas
-        personas = create_personas()
-        test_question = "Was ist dir bei einer Lifestyle-Marke am wichtigsten?"
-        
-        print(f"Verwende Modell: {get_ai_model_name()}")
-        print(f"Test-Frage: {test_question}\n")
-        
-        # Teste jede Persona einzeln
-        all_successful = True
-        for persona in personas:
-            success = test_single_persona(persona, test_question)
-            if not success:
-                all_successful = False
-        
-        if all_successful:
-            print("✅ Alle Personas haben erfolgreich geantwortet!")
-            return True
-        else:
-            print("❌ Einige Personas hatten Probleme.")
-            return False
-        
-    except Exception as error:
-        print(f"❌ Allgemeiner Fehler beim Testen der Personas: {error}")
-        return False
-
-
-# =====================================
-# MAIN EXECUTION (Hauptausführung)
-# =====================================
-
-if __name__ == "__main__":
-    """
-    Wenn diese Datei direkt ausgeführt wird, teste alle Personas
-    Das ist nützlich für Entwicklung und Debugging
-    """
-    print("🚀 Starte Persona-Test...\n")
-    
-    # Validiere den API-Schlüssel bevor wir mit den Tests beginnen
-    if not validate_api_key():
-        print("🔧 Bitte beheben Sie die Probleme mit dem API-Schlüssel bevor Sie Interviews durchführen.")
-    else:
-        success = test_personas()
-        
-        if success:
-            print("\n🎉 Alle Tests erfolgreich! Die Personas sind bereit für Interviews.")
-        else:
-            print("\n🔧 Bitte beheben Sie die Probleme bevor Sie Interviews durchführen.")

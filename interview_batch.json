@@ -1,0 +1,23 @@
+{
+  "questions": [
+    "Was ist dir bei einer Lifestyle-Marke am wichtigsten?",
+    "Wie bewertest du Nachhaltigkeit bei den Marken, die du wählst?",
+    "Welche Rolle spielt der Preis bei deinen Kaufentscheidungen?",
+    "Wie beeinflussen soziale Medien und Influencer-Empfehlungen deine Markenwahl?",
+    "Was würde dich zu einem treuen Kunden einer Lifestyle-Marke machen?"
+  ],
+  "metadata": {
+    "description": "Focused lifestyle brand research questionnaire",
+    "version": "1.1",
+    "created": "2025-01-21",
+    "target_group": "General consumers interested in lifestyle brands",
+    "estimated_duration": "5-8 minutes per persona",
+    "research_focus": [
+      "Brand loyalty factors",
+      "Purchase decision drivers", 
+      "Sustainability awareness",
+      "Social media influence",
+      "Price sensitivity"
+    ]
+  }
+}

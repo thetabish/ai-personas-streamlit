@@ -14,10 +14,13 @@ env/
 
 # Results and output files
 results/
+batch_results/
 results.json
 results.md
 interview_results_*.json
 interview_results_*.md
+batch_interview.log
+*.log
 
 # IDE files
 .vscode/
