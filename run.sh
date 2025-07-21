@@ -181,7 +181,7 @@ echo ""
 
 # Demo ausführen
 echo -e "${CYAN}Starte synthetisches Interview mit allen Agenten...${NC}"
-$PYTHON_CMD interview.py questions.json
+$PYTHON_CMD interview.py --questions questions.json
 
 echo ""
 echo -e "${GREEN}======================================================================"
@@ -194,10 +194,13 @@ echo -e "${YELLOW}   - interview_results_[timestamp].json (JSON-Format)${NC}"
 echo ""
 echo -e "${CYAN}🔄 Weitere Interview-Optionen:${NC}"
 echo -e "${YELLOW}   # Alle Agenten:${NC}"
-echo -e "${YELLOW}   $PYTHON_CMD interview.py questions.json${NC}"
+echo -e "${YELLOW}   $PYTHON_CMD interview.py --questions questions.json${NC}"
 echo ""
 echo -e "${YELLOW}   # Einzelner Agent:${NC}"
 echo -e "${YELLOW}   $PYTHON_CMD interview.py anna questions.json${NC}"
+echo ""
+echo -e "${YELLOW}   # Batch-Verarbeitung (Cron-kompatibel):${NC}"
+echo -e "${YELLOW}   $PYTHON_CMD run_batch.py${NC}"
 echo -e "${YELLOW}   $PYTHON_CMD interview.py tom questions.json${NC}"
 echo -e "${YELLOW}   $PYTHON_CMD interview.py julia questions.json${NC}"
 echo ""

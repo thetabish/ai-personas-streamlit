@@ -181,7 +181,7 @@ echo.
 
 REM Demo ausfuehren
 echo Starte synthetisches Interview mit allen Agenten...
-python interview.py questions.json
+python interview.py --questions questions.json
 
 echo.
 echo ======================================================================
@@ -194,10 +194,13 @@ echo    - interview_results_[timestamp].json (JSON-Format)
 echo.
 echo Weitere Interview-Optionen:
 echo    Alle Agenten:
-echo    python interview.py questions.json
+echo    python interview.py --questions questions.json
 echo.
 echo    Einzelner Agent:
 echo    python interview.py anna questions.json
+echo.
+echo    Batch-Verarbeitung (Cron-kompatibel):
+echo    python run_batch.py
 echo    python interview.py tom questions.json
 echo    python interview.py julia questions.json
 echo.
