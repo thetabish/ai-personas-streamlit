@@ -16,9 +16,8 @@ env/
 results/
 results.json
 results.md
-*.json
-!questions.json
-!.env.example
+interview_results_*.json
+interview_results_*.md
 
 # IDE files
 .vscode/

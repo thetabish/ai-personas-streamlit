@@ -31,7 +31,7 @@ echo -e "${CYAN}Richtet alles ein und startet eine Demo in unter 5 Minuten!${NC}
 echo ""
 
 # Schritt 1: Python-Version prüfen
-echo -e "${BLUE}📋 Schritt 1/6: Python-Version prüfen...${NC}"
+echo -e "${BLUE}📋 Schritt 1/5: Python-Version prüfen...${NC}"
 if command -v python3 &> /dev/null; then
     PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
     echo -e "${GREEN}✓ Python ${PYTHON_VERSION} gefunden${NC}"
@@ -50,7 +50,7 @@ else
 fi
 
 # Schritt 2: Virtuelle Umgebung erstellen
-echo -e "${BLUE}📦 Schritt 2/6: Virtuelle Python-Umgebung einrichten...${NC}"
+echo -e "${BLUE}📦 Schritt 2/5: Virtuelle Python-Umgebung einrichten...${NC}"
 if [ ! -d "venv" ]; then
     echo "Erstelle virtuelle Umgebung..."
     $PYTHON_CMD -m venv venv
@@ -71,7 +71,7 @@ fi
 echo -e "${GREEN}✓ Virtuelle Umgebung aktiviert${NC}"
 
 # Schritt 3: Abhängigkeiten installieren
-echo -e "${BLUE}📚 Schritt 3/6: Python-Abhängigkeiten installieren...${NC}"
+echo -e "${BLUE}📚 Schritt 3/5: Python-Abhängigkeiten installieren...${NC}"
 if [ -f "requirements.txt" ]; then
     pip install --quiet --upgrade pip
     pip install --quiet -r requirements.txt
@@ -82,7 +82,7 @@ else
 fi
 
 # Schritt 4: Umgebungsvariablen einrichten
-echo -e "${BLUE}🔑 Schritt 4/6: Umgebungsvariablen prüfen...${NC}"
+echo -e "${BLUE}🔑 Schritt 4/5: Umgebungsvariablen prüfen...${NC}"
 if [ ! -f ".env" ]; then
     if [ -f ".env.example" ]; then
         cp .env.example .env
@@ -151,18 +151,8 @@ else
     echo -e "${GREEN}✓ Gültiger API-Schlüssel gespeichert!${NC}"
 fi
 
-# Schritt 5: System testen
-echo -e "${BLUE}🧪 Schritt 5/6: System testen...${NC}"
-echo "Teste Verbindung zu OpenRouter und Personas..."
-if $PYTHON_CMD check_setup.py > /dev/null 2>&1; then
-    echo -e "${GREEN}✓ Alle Setup-Checks erfolgreich${NC}"
-else
-    echo -e "${YELLOW}⚠️  Warnung: Setup-Test fehlgeschlagen${NC}"
-    echo "Versuche trotzdem fortzufahren..."
-fi
-
-# Schritt 6: Demo starten
-echo -e "${BLUE}🎤 Schritt 6/6: Demo starten...${NC}"
+# Schritt 5: Demo starten
+echo -e "${BLUE}🎤 Schritt 5/5: Demo starten...${NC}"
 echo ""
 echo -e "${GREEN}======================================================================"
 echo "🎉 SETUP ABGESCHLOSSEN! Starte Demo..."
@@ -190,7 +180,7 @@ echo -e "${CYAN}Starte synthetisches Interview mit Beispiel-Fragen...${NC}"
 echo ""
 
 # Demo ausführen
-$PYTHON_CMD interview.py --questions questions.json --format md --verbose
+$PYTHON_CMD interview.py --questions questions.json
 
 echo ""
 echo -e "${GREEN}======================================================================"

@@ -22,7 +22,7 @@ echo Richtet alles ein und startet eine Demo in unter 5 Minuten!
 echo.
 
 REM Schritt 1: Python-Version pruefen
-echo Schritt 1/6: Python-Version pruefen...
+echo Schritt 1/5: Python-Version pruefen...
 python --version >nul 2>&1
 if errorlevel 1 (
     python3 --version >nul 2>&1
@@ -43,7 +43,7 @@ echo Python !PYTHON_VERSION! gefunden
 echo.
 
 REM Schritt 2: Virtuelle Umgebung erstellen
-echo Schritt 2/6: Virtuelle Python-Umgebung einrichten...
+echo Schritt 2/5: Virtuelle Python-Umgebung einrichten...
 if not exist "venv" (
     echo Erstelle virtuelle Umgebung...
     !PYTHON_CMD! -m venv venv
@@ -59,7 +59,7 @@ echo Virtuelle Umgebung aktiviert
 echo.
 
 REM Schritt 3: Abhaengigkeiten installieren
-echo Schritt 3/6: Python-Abhaengigkeiten installieren...
+echo Schritt 3/5: Python-Abhaengigkeiten installieren...
 if exist "requirements.txt" (
     python -m pip install --quiet --upgrade pip
     python -m pip install --quiet -r requirements.txt
@@ -72,7 +72,7 @@ if exist "requirements.txt" (
 echo.
 
 REM Schritt 4: Umgebungsvariablen einrichten
-echo Schritt 4/6: Umgebungsvariablen pruefen...
+echo Schritt 4/5: Umgebungsvariablen pruefen...
 if not exist ".env" (
     if exist ".env.example" (
         copy .env.example .env >nul
@@ -151,20 +151,8 @@ if errorlevel 1 (
 )
 echo.
 
-REM Schritt 5: System testen
-echo Schritt 5/6: System testen...
-echo Teste Verbindung zu OpenRouter und Personas...
-python check_setup.py
-if errorlevel 1 (
-    echo Warnung: Setup-Test fehlgeschlagen
-    echo Versuche trotzdem fortzufahren...
-) else (
-    echo Alle Setup-Checks erfolgreich
-)
-echo.
-
-REM Schritt 6: Demo starten
-echo Schritt 6/6: Demo starten...
+REM Schritt 5: Demo starten
+echo Schritt 5/5: Demo starten...
 echo.
 echo ======================================================================
 echo SETUP ABGESCHLOSSEN! Starte Demo...
@@ -192,7 +180,7 @@ echo Starte synthetisches Interview mit Beispiel-Fragen...
 echo.
 
 REM Demo ausfuehren
-python interview.py --questions questions.json --format md --verbose
+python interview.py --questions questions.json
 
 echo.
 echo ======================================================================

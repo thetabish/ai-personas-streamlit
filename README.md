@@ -59,12 +59,14 @@ cd ai-personas
 
 ## ✨ Features
 
-- 🤖 3 einzigartige AI-Personas (Anna, Tom, Julia)
-- 🔗 LangChain + OpenRouter (kostenlos)
-- 📝 JSON-Fragensystem
-- 💻 Einfache CLI-Bedienung
-- 📊 JSON/Markdown Ausgabe
-- 🧠 Gedächtnissystem für kontextbewusste Antworten
+- 🤖 **3 einzigartige AI-Personas** (Anna, Tom, Julia)
+- 🎯 **Flexibler Interview-Modus** (alle Personas oder einzeln)
+- 🔗 **LangChain + OpenRouter** (kostenlos)
+- 📝 **JSON-Fragensystem** (einfach anpassbar)
+- 💻 **CLI & Python API** (Kommandozeile + programmierbar)
+- 📊 **JSON/Markdown Ausgabe** (strukturierte Daten + Berichte)
+- 🧠 **Unabhängige Persona-Gedächtnisse** (konsistente Antworten)
+- ⚡ **Kostenfrei** (Mistral AI über OpenRouter)
 
 ## 🔧 Manuelle Installation
 
@@ -86,20 +88,58 @@ cp .env.example .env
 # Schlüssel erhalten: https://openrouter.ai/mistralai/mistral-small-24b-instruct-2501:free/api
 
 # 4. Demo starten
-python interview.py --questions questions.json --format md --verbose
+python interview.py --questions questions.json
 ```
 
 ## 💻 Verwendung
 
+### CLI (Kommandozeile)
 ```bash
-# Basis-Interview
+# Basis-Interview (alle Personas, Markdown-Ausgabe)
 python interview.py --questions questions.json
 
-# Mit Markdown-Ausgabe
-python interview.py --questions questions.json --format md --verbose
+# JSON-Format gewünscht
+python interview.py --questions questions.json --format json
 
 # Eigene Ausgabedatei  
 python interview.py --questions questions.json --output meine_befragung
+```
+
+### Programmable API (Python Import)
+
+**Flexibler `run_interview()` - zwei Modi:**
+
+#### 1. Alle Personas (Standard)
+```python
+from interview import run_interview
+
+# Alle 3 Personas antworten (Anna, Tom, Julia)
+results = run_interview("questions.json")
+
+# Mit Format-Optionen
+results = run_interview("questions.json", format="json")
+results = run_interview("questions.json", output_file="my_study")
+```
+
+#### 2. Einzelne Persona
+```python
+# Nur Anna antwortet
+results = run_interview("anna", "questions.json")
+
+# Nur Tom antwortet
+results = run_interview("tom", "questions.json") 
+
+# Nur Julia antwortet
+results = run_interview("julia", "questions.json")
+
+# Mit Format-Optionen
+results = run_interview("anna", "questions.json", format="json")
+```
+
+**Verfügbare Agenten abrufen:**
+```python
+from interview import get_available_agents
+agents = get_available_agents()  # ['anna', 'tom', 'julia']
 ```
 
 ### Eigene Fragen erstellen
@@ -110,6 +150,46 @@ python interview.py --questions questions.json --output meine_befragung
     "Ihre zweite Frage hier"
   ]
 }
+```
+
+## 🏗️ Technische Architektur & Entscheidungen
+
+### Warum Mistral AI?
+- **Kostenlos**: Mistral Small über OpenRouter ist völlig kostenlos
+- **Qualität**: Hochwertiges mehrsprachiges Modell (DE/EN)
+- **Performance**: Schnelle Antwortzeiten für Interviews
+- **Konsistenz**: Stabile Persona-Charakteristiken
+
+### Warum OpenRouter?
+- **Kostenkontrolle**: Kostenlose Modelle ohne versteckte Gebühren
+- **Einfachheit**: Ein API-Schlüssel für viele AI-Modelle
+- **Zuverlässigkeit**: Professioneller API-Gateway mit hoher Verfügbarkeit
+- **Flexibilität**: Einfacher Modellwechsel ohne Code-Änderungen
+
+### LangChain Integration
+```python
+# Vereinfachter Workflow:
+PersonaAgent → LangChain → OpenRouter → Mistral AI → Antwort
+```
+
+**Warum LangChain?**
+- **Abstraktion**: Einheitliche Schnittstelle für verschiedene AI-Modelle
+- **Kontext-Management**: Automatische Verwaltung von Gesprächsverläufen
+- **Prompt-Engineering**: Strukturierte Prompts für konsistente Ergebnisse
+- **Zukunftssicherheit**: Einfacher Wechsel zwischen AI-Anbietern
+
+### Programm-Flow
+1. **Setup**: API-Validierung → Persona-Erstellung (LangChain)
+2. **Interview**: Jede Persona antwortet unabhängig (eigener Kontext)
+3. **Speicherung**: Strukturierte JSON/Markdown-Ausgabe
+4. **Gedächtnis**: Personas erinnern sich an eigene Antworten (konsistent)
+
+### Persona-Unabhängigkeit
+```python
+# Jede Persona ist eine eigene "Person"
+Anna.respond(question, previous_responses=[])  # Keine anderen Antworten
+Tom.respond(question, previous_responses=[])   # Nur eigener Kontext
+Julia.respond(question, previous_responses=[]) # Unabhängige Meinung
 ```
 
 ## 🛠️ Anpassung
@@ -141,11 +221,21 @@ DEFAULT_MODEL=mistralai/mistral-small-24b-instruct-2501:free
 - **Command Prompt empfohlen**: Öffnen Sie `cmd` statt PowerShell für beste Kompatibilität
 - **Test**: `python agents.py`
 
-## 📚 Tech Stack
+## 📚 Tech Stack & Rationale
 
-- **LangChain** - AI Framework
-- **OpenRouter** - API Gateway (kostenlos)
-- **Python** - Programmiersprache
+### Core Technologies
+- **🐍 Python 3.8+** - Robust, weitverbreitet, große AI-Community
+- **🔗 LangChain** - De-facto Standard für AI-Anwendungen, vereinfacht Prompt-Management
+- **🌐 OpenRouter** - Kostengünstigster Zugang zu hochwertigen AI-Modellen
+- **🤖 Mistral AI** - Beste kostenlose Option: mehrsprachig, konsistent, schnell
+
+### Warum diese Kombination?
+- **Kosten**: Völlig kostenfrei durch OpenRouter + Mistral
+- **Qualität**: Professionelle Ergebnisse ohne Kompromisse
+- **Entwicklung**: Schnelle Iteration durch LangChain-Abstraktion
+- **Skalierung**: Einfacher Wechsel zu anderen Modellen bei Bedarf
+
+**Gesamtkosten: 0€** 💰 (Ideal für Experimente und kleine Projekte)
 
 ---
 
