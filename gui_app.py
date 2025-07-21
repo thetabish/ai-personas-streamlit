@@ -70,12 +70,14 @@ def init_streamlit_config():
     }
     
     .question-bubble {
-        background: #f0f2f6;
-        border-left: 4px solid #667eea;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-left: 4px solid #4facfe;
         padding: 1rem;
         margin: 1rem 0;
         border-radius: 0 10px 10px 0;
         font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
     .typing-indicator {
