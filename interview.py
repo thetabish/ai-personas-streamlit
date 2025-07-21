@@ -414,22 +414,5 @@ def run_interview(agent_or_questions, questions_file=None, format="md", output_f
         return None
 
 
-def get_available_agents():
-    """
-    Gibt eine Liste der verfügbaren Agent-Namen zurück
-    
-    Returns:
-        Liste von Agent-Namen (lowercase für run_interview Verwendung)
-    """
-    try:
-        manager = InterviewManager()
-        if manager.setup_personas():
-            return [persona.name.lower() for persona in manager.personas]
-        else:
-            return []
-    except Exception:
-        return []
-
-
 if __name__ == "__main__":
     main()

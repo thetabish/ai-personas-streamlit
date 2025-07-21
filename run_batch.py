@@ -25,7 +25,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 # Import our interview functionality
-from interview import run_interview, get_available_agents
+from interview import run_interview
 
 
 class BatchInterviewRunner:
@@ -235,7 +235,7 @@ class BatchInterviewRunner:
             
             # Validiere Agent falls angegeben
             if agent:
-                available_agents = get_available_agents()
+                available_agents = ['anna', 'tom', 'julia']
                 if agent.lower() not in available_agents:
                     self.logger.error(f"Unbekannter Agent: {agent}")
                     self.logger.info(f"Verfügbare Agenten: {', '.join(available_agents)}")
