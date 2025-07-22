@@ -287,10 +287,10 @@ PersonaAgent → LangChain → OpenRouter → Mistral AI → Antwort
 
 ### Persona-Unabhängigkeit
 ```python
-# Jede Persona ist eine eigene "Person"
-Anna.respond(question, previous_responses=[])  # Keine anderen Antworten
-Tom.respond(question, previous_responses=[])   # Nur eigener Kontext
-Julia.respond(question, previous_responses=[]) # Unabhängige Meinung
+# Jede Persona ist eine eigene "Person" - völlig unabhängig
+Anna.respond(question)   # Keine anderen Antworten bekannt
+Tom.respond(question)    # Nur eigener Kontext
+Julia.respond(question)  # Unabhängige Meinung, keine Beeinflussung
 ```
 
 ## 🛠️ Anpassung

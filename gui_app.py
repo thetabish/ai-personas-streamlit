@@ -308,16 +308,15 @@ def run_chat_interview(questions: List[str], selected_agents: List[str]):
                         "responses": []
                     }
                     
-                    previous_responses = []
-                    
+                    # Each persona responds independently - no cross-contamination
                     for persona in personas:
                         try:
                             # Show typing indicator
                             status_text.text(f"💭 {persona.name} überlegt...")
                             display_chat_message(persona.name, "", is_typing=True)
                             
-                            # Get response with timeout handling
-                            response = persona.respond(question, previous_responses)
+                            # Get response WITHOUT other personas' responses for independence
+                            response = persona.respond(question, previous_responses=None)
                             
                             # Validate response
                             if not response or response.strip() == "":
@@ -333,7 +332,7 @@ def run_chat_interview(questions: List[str], selected_agents: List[str]):
                                 "status": "success"
                             }
                             question_data["responses"].append(response_data)
-                            previous_responses.append(response_data)
+                            # Note: We don't add to previous_responses to maintain independence
                             
                         except Exception as e:
                             error_msg = f"❌ Fehler bei {persona.name}: {str(e)}"

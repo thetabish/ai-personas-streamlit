@@ -115,14 +115,14 @@ class PersonaAgent:
         
         Args:
             question: Die Frage als Text
-            previous_responses: Was andere Personas vorher gesagt haben
+            previous_responses: NICHT VERWENDET - Personas sind unabhängig
             
         Returns:
             Die Antwort der Persona als Text
         """
         try:
-            # Erstelle strukturierten Kontext
-            context = self._build_context(question, previous_responses)
+            # Erstelle strukturierten Kontext (ohne andere Personas)
+            context = self._build_context(question)
             
             # Lass die AI antworten - verwende moderne invoke Methode
             response = self.chain.invoke({"input": context})
@@ -156,17 +156,13 @@ class PersonaAgent:
         """
         self.conversation_history.clear()
     
-    def _build_context(self, question, previous_responses):
-        """Erstellt einfachen Kontext für die AI"""
+    def _build_context(self, question):
+        """Erstellt einfachen Kontext für die AI - nur eigene Geschichte"""
         context = f"Interview-Frage: {question}"
         
-        if previous_responses:
-            context += "\n\nAndere Antworten:\n"
-            for resp in previous_responses:
-                context += f"- {resp['agent_id']}: {resp['response']}\n"
-        
+        # Nur die eigene Gesprächshistorie verwenden - keine anderen Personas
         if self.conversation_history:
-            context += f"\n\nDein Verlauf:\n"
+            context += f"\n\nDein bisheriger Verlauf:\n"
             for item in self.conversation_history[-2:]:  # Nur die letzten 2
                 context += f"F: {item['question']}\nA: {item['response']}\n"
         

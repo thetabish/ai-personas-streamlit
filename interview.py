@@ -73,7 +73,7 @@ class InterviewManager:
             print(f"  {persona.name} antwortet...")
             
             # Hole die unabhängige Antwort von der Persona (keine previous_responses)
-            response = persona.respond(question_text, [])
+            response = persona.respond(question_text, None)
             
             # Erstelle ein Datenpaket für diese Antwort
             response_data = {
